@@ -19,19 +19,26 @@ class StreamController extends Controller
         if($permission == 1)
         {
             $stream = Stream::whereId($request->id)->whereStatus(1)->first();
+
             if($stream) {
+                
                 $length = strlen($stream->url);
                 $epoch = strtotime('+ '. $stream->exp_number . ' ' .$stream->exp_unit, time());
                 $raw_hash = $stream->hash . $stream->url . '?p=' . $length . '&e=' . $epoch;
                 $hash = md5($raw_hash);
                 $data = $stream->url . 'manifest.m3u8' . '?p=' . $length . '&e=' . $epoch .'&h=' . $hash;
             }
+
             $status = 1;
         
-        }else {
+        }elseif($permission == 2) {
+
             $status = 2;
+
         }
+
         return response()->json([
+
             'status' => $status,
             'url' => $data
 
