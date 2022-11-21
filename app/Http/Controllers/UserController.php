@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function index()
+    public function list()
     {
         $request = User::all();
 
@@ -65,7 +65,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(UserReadDeleteRequest $request)
+    public function read(UserReadDeleteRequest $request)
     {
         $validated = $request->safe()->all();
         $data = User::findOrFail($validated['id']);        
@@ -89,7 +89,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function destroy(UserReadDeleteRequest $request)
+    public function delete(UserReadDeleteRequest $request)
     {
         $validated = $request->safe()->all();
         $data = User::findOrFail($validated['id']);        

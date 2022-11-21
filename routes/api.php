@@ -23,20 +23,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth/user/login', [UserController::class, 'login']);
 
 Route::group(['prefix' => 'user', 'middleware'=>['auth:sanctum']], function(){
-    Route::get('list', [UserController::class, 'index']);
-    Route::get('read', [UserController::class, 'show']);
+    Route::get('list', [UserController::class, 'list']);
+    Route::get('read', [UserController::class, 'read']);
     Route::post('create', [UserController::class, 'create']);
     Route::post('update', [UserController::class, 'update']);
     Route::post('update-permission', [UserController::class, 'updatePermission']);
-    Route::delete('delete', [UserController::class, 'destroy']);
+    Route::delete('delete', [UserController::class, 'delete']);
 
     Route::group(['prefix' => 'stream'], function() {
-        Route::get('list' , [StreamController::class, 'index']);
+        Route::get('list' , [StreamController::class, 'list']);
         Route::post('create' , [StreamController::class, 'create']);
-        Route::get('read', [StreamController::class, 'show']);
+        Route::get('read', [StreamController::class, 'read']);
         Route::post('create', [StreamController::class, 'create']);
         Route::post('update', [StreamController::class, 'update']);
-        Route::delete('delete', [StreamController::class, 'destroy']);
+        Route::delete('delete', [StreamController::class, 'delete']);
         Route::get('generate', [StreamController::class, 'generate']);
     });
     

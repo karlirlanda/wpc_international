@@ -8,15 +8,15 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        @for ($i = 0; $i < 4; $i++)
-                        {{-- <iframe width="100%" height="500" src="https://www.youtube.com/embed/Sn0Vc8vclOU" allowfullscreen></iframe> --}}
+                        {{-- @for ($i = 0; $i < 4; $i++)
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/Sn0Vc8vclOU" allowfullscreen></iframe>
                         <x-primary-button>
                             Stream {{$i+1}}
-                            {{-- <video id="my-video" class="video-js" controls preload="auto" data-setup="{}" muted>
-                                <source src="http://alpharliv2.mmdlive.lldns.net/alpharliv2/fbe971f51d8d436895fe04c47261e742/manifest.m3u8?p=80&e=1669013929&h=38fda2db6fa3e85354b7f10668d7c2d0" type="video/x-mpegURL" />
-                            </video> --}}
+                            <video id="my-video" class="video-js" controls preload="auto" data-setup="{}" muted>
+                                <source src="http://alpharliv2.mmdlive.lldns.net/alpharliv2/fbe971f51d8d436895fe04c47261e742/manifest.m3u8?p=80&e=1669020274&h=4b402b991320250568d45be13c25d931" type="video/x-mpegURL" />
+                            </video>
                         </x-primary-button>
-                        @endfor
+                        @endfor --}}
                     </div>
                 </div>
             </div>
