@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserReadDeleteRequest;
+use App\Http\Requests\UserUpdatePermissionRequest;
 
 class UserController extends Controller
 {
@@ -42,11 +43,7 @@ class UserController extends Controller
             'token_type'    => 'Bearer',
         ]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $request = User::all();
@@ -54,11 +51,6 @@ class UserController extends Controller
         return $request;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(LoginRequest $request)
     {
         $validated = $request->safe()->all();
@@ -73,23 +65,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(UserReadDeleteRequest $request)
     {
         $validated = $request->safe()->all();
@@ -99,25 +74,6 @@ class UserController extends Controller
         ]);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UserUpdateRequest $request)
     {
         $validated = $request->safe()->all();
@@ -133,12 +89,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(UserReadDeleteRequest $request)
     {
         $validated = $request->safe()->all();
@@ -147,6 +97,19 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User deleted successfully!',
+        ]);
+    }
+
+    public function updatePermission (UserUpdatePermissionRequest $request)
+    {
+        $validated = $request->safe()->all();
+        $data = User::findOrFail($validated['id']);
+
+        $data->update($validated);
+
+        return response()->json([
+            'data' => $data,
+            'message'    => 'User permission updated successfully!',
         ]);
     }
 }

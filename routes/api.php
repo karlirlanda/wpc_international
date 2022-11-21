@@ -27,6 +27,7 @@ Route::group(['prefix' => 'user', 'middleware'=>['auth:sanctum']], function(){
     Route::get('read', [UserController::class, 'show']);
     Route::post('create', [UserController::class, 'create']);
     Route::post('update', [UserController::class, 'update']);
+    Route::post('update-permission', [UserController::class, 'updatePermission']);
     Route::delete('delete', [UserController::class, 'destroy']);
 
     Route::group(['prefix' => 'stream'], function() {

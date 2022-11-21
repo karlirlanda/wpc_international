@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StreamRequest extends FormRequest
+class UserUpdatePermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,8 @@ class StreamRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'url' => 'required',
-            'hash' => 'required',
-            'exp_number' => 'required|integer',
-            'exp_unit' => 'required',
-            'status' => 'integer'
-
+            'id' => 'required|exists:users,id',
+            'permission' => 'required|integer|in:1,2'
         ];
     }
 }

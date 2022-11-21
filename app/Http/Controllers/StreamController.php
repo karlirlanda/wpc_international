@@ -45,8 +45,16 @@ class StreamController extends Controller
      */
     public function index()
     {
-        $streams = Stream::all();
-        return $streams;
+        $permission = auth()->user()->permission;
+        if($permission == 1)
+        {
+            $streams = Stream::all();
+            return $streams;
+        }
+        return response()->json([
+            'message' => "You don't have permission to view the streams"
+            ]);
+        
     }
 
     /**
@@ -54,11 +62,11 @@ class StreamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(StreamRequest $request)
     {
-        // $validated = $request->safe()->all();
+        $validated = $request->safe()->all();
         //Generate a url for a specific stream
-        $data = Stream::create($request);
+        $data = Stream::create($validated);
 
         return response()->json([
             'name' => $data->name,

@@ -9,6 +9,6 @@ class Stream extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'url'];
+    protected $fillable = ['name', 'url', 'hash', 'exp_number', 'exp_unit', 'status'];
 
 }
